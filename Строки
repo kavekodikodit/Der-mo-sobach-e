@@ -1,0 +1,79 @@
+program stroki;
+
+type
+  
+  tmas = array [1..100] of string;
+
+var
+  s: string;
+
+procedure Strochki(var s: string);
+var
+  i, k, j, len, q: integer; 
+  a: tmas;
+  s1, s2, s3: string;
+begin
+  
+  i := 1;
+  k := 0;
+  while i <= length(s) do 
+  begin
+    if s[i] in ['0'..'9'] then k := k + 1; 
+    if (s[i] = ' ') or (i = length(s)) then 
+    begin
+      if k = 1 then s1 := s1 + copy(s, 1, i); 
+      delete(s, 1, i); 
+      k := 0; 
+      i := 0; 
+    end; 
+    i := i + 1; 
+  end; 
+  writeln;
+  writeln('Слова с одной цифрой: '); 
+  writeln(S1); 
+  
+  len := length(s1); 
+  i := 1; 
+  while i <= len do 
+    if ((lowercase(s1[i]) >= 'a') and (lowercase(s1[i]) <= 'z')) or ((lowercase(s1[i]) >= '0') and (lowercase(s1[i]) <= '9')) then 
+    begin
+      s2 := lowercase(s1[i]); 
+      i := i + 1; 
+      while (i <= len) and 
+      ((lowercase(s1[i]) >= 'a') and (lowercase(s1[i]) <= 'z')) or ((lowercase(s1[i]) >= '0') and (lowercase(s1[i]) <= '9')) do 
+      begin
+        s2 := s2 + lowercase(s1[i]); 
+        i := i + 1; 
+      end; 
+      j := 1; 
+      while (j <= q) and (s2 <> a[j]) do 
+        j := j + 1; 
+      if j > q then begin
+        q := q + 1; 
+        a[q] := s2; 
+      end; 
+    end 
+    else 
+      i := i + 1; 
+  
+  
+  
+  for i := 1 to q - 1 do 
+    for j := 1 to q - i do 
+      if a[j][1] > a[j + 1][1] then begin
+        s3 := a[j]; 
+        a[j] := a[j + 1]; 
+        a[j + 1] := s3; 
+      end; 
+  writeln; 
+  writeln('В алфавитном порядке: '); 
+  for i := 1 to q do write(a[i], ' '); 
+  writeln; 
+  
+end;
+
+begin
+  writeln('Введите строку: '); 
+  readln(s);
+  Strochki(s);
+end.
